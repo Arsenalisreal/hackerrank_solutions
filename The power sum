@@ -1,0 +1,40 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the powerSum function below.
+def power(num,n):
+    if(n==0):
+        return 1
+    elif(n%2==0):
+        return power(num,n//2)*power(num,n//2)
+    else:
+        return num*power(num,n//2)*power(num,n//2)
+
+def powerSum(X, N,curr_num=1,curr_sum=0):
+    result=0
+    p=power(curr_num,N)
+    while(p+curr_sum<X):
+        result+=powerSum(X,N,curr_num+1,curr_sum+p)
+        curr_num=curr_num+1
+        p=power(curr_num,N)
+    if(p+curr_sum==X):
+        result=result+1
+    return result
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    X = int(input())
+
+    N = int(input())
+
+    result = powerSum(X, N)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
