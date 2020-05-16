@@ -8,11 +8,7 @@ import sys
 
 # Complete the permutationEquation function below.
 def permutationEquation(p):
-    a=[i for i in range(1,len(p)+1)]
-    l=[]
-    for i in a:
-        l.append(p.index(p.index(i)+1)+1)
-        #print(l)
+    l=[p.index(p.index(i)+1)+1 for i in range(1,len(p)+1)]
     return l
 
 
